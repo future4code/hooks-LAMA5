@@ -6,7 +6,7 @@ import { BaseDatabase } from "../data/BaseDatabase";
 export class UserController {
     async signup(req: Request, res: Response) {
         try {
-
+            const { name, email, password, role } = req.body;
             const input: UserInputDTO = {
                 email: req.body.email,
                 name: req.body.name,
@@ -21,10 +21,8 @@ export class UserController {
 
         } catch (error) {
             res.status(400).send({ error: error.message });
-        }
-
-        await BaseDatabase.destroyConnection();
-    }
+        }        
+    };
 
     async login(req: Request, res: Response) {
 

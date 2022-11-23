@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "Template para o projeto LAMA",
   "main": "index.js",
-  "scripts": {    
-    "migrations": "tsc && node ./build/migrations.js",
-      "start": "npm run build && node --inspect ./build/src/index.js",
-      "dev": "clear && ts-node-dev ./src/index.ts",
-      "build": "clear && echo \"Transpiling files...\" && tsc && echo \"Done!\" ",
-      "test": "jest"
+  "scripts": {
+    "migrations": "ts-node-dev ./src/data/StartMigrations.ts",
+    "start": "npm run build && node --inspect ./build/src/index.js",
+    "dev": "clear && ts-node-dev ./src/index.ts",
+    "build": "clear && echo \"Transpiling files...\" && tsc && echo \"Done!\" ",
+    "test": "jest"
   },
   "keywords": [
     "api",
@@ -24,15 +24,16 @@
     "@types/knex": "^0.16.1",
     "@types/uuid": "^8.0.0",
     "bcryptjs": "^2.4.3",
-    "dotenv": "^8.2.0",
+    "dotenv": "^8.6.0",
     "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
     "jest": "^26.0.1",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.2",
     "moment": "^2.27.0",
     "mysql": "^2.18.1",
     "ts-jest": "^26.1.0",
     "ts-node": "^8.10.2",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^3.9.6",
     "uuid": "^8.2.0"
   }
