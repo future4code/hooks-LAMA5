@@ -8,6 +8,20 @@ export class UserBusiness {
 
     async createUser(user: UserInputDTO) {
 
+        try {
+            const {name, email, password, role } = user;
+
+            if (!name || !email || !password || !role){
+                throw new Error(
+                400, 'Preencha os campos "name", "email", e "password"'
+                )
+            }
+        } catch (error) {
+            
+        }
+
+
+
         const idGenerator = new IdGenerator();
         const id = idGenerator.generate();
 
