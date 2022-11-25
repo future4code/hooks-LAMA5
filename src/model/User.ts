@@ -27,25 +27,25 @@ export class User{
         return this.role;
     }
 
-    setId(id: string){
-        this.id = id;
-    }
+//     setId(id: string){
+//         this.id = id;
+//     }
 
-    setName(name: string){
-        this.name = name;
-    }
+//     setName(name: string){
+//         this.name = name;
+//     }
 
-    setEmail(email: string){
-        this.email = email;
-    }
+//     setEmail(email: string){
+//         this.email = email;
+//     }
 
-    setPassword(password: string){
-        this.password = password;
-    }
+//     setPassword(password: string){
+//         this.password = password;
+//     }
 
-    setRole(role: UserRole){
-        this.role = role;
-    }
+//     setRole(role: UserRole){
+//         this.role = role;
+//     }
 
    static stringToUserRole(input: string): UserRole{
         switch (input) {
@@ -66,6 +66,14 @@ export class User{
 }
 
 export interface UserInputDTO{
+    email: string;
+    password: string;
+    name: string;
+    role: string;
+}
+
+export interface CreateUser{
+    id: string,
     email: string;
     password: string;
     name: string;
