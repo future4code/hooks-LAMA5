@@ -1,4 +1,4 @@
-import { UserInputDTO, LoginInputDTO, User, UserRole } from "../model/User";
+import { UserInputDTO, LoginInputDTO, User, UserRole, CreateUser } from "../model/User";
 import { UserDatabase } from "../data/UserDatabase";
 import { IdGenerator } from "../services/IdGenerator";
 import { HashManager } from "../services/HashManager";
@@ -17,7 +17,7 @@ export class UserBusiness {
       if (!name || !email || !password || !role) {
         throw new BaseError(
           400,
-          'Preencha os campos "name", "email", e "password"'
+          'Preencha os campos "name", "email", "password" e "role'
         );
       }
 
@@ -28,22 +28,24 @@ export class UserBusiness {
       if (!email.includes("@")) {
         throw new InvalidEmail();
       }
+// #SOCORRO PEU
+      if (role != UserRole.ADMIN || UserRole.NORMAL){}
 
       const id: string = idGenerator.generateId();
 
       const hashPassword: string = await hashManager.hash(input.password);
 
-      const user: User = {
+      const user: CreateUser = {
         id,
         name,
         email,
         password: hashPassword,
-        role: UserRole.NORMAL,
+        role,
       };
       
-      await userDatabase.createUser(id, email, name, password, role);
+      await userDatabase.createUser(user);
 
-      const accessToken = authenticator.generateToken({ id, role: user.role });
+      const accessToken = authenticator.generateToken({ id, role});
       return accessToken;
     } catch (error) {}
   }
